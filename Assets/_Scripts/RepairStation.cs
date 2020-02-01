@@ -11,6 +11,7 @@ public class RepairStation : MonoBehaviour
     private float statValue;
     private CombatController combat;
     private string playerAxis;
+    private bool inStation;
     void Start()
     {
         combat = GameObject.Find("GameManager").GetComponent<CombatController>();
@@ -33,10 +34,13 @@ public class RepairStation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    if(Input.GetButtonDown("P1 Action"))
-      {
-          Debug.Log("update");
-      }
+        if(inStation)
+        {
+            if(Input.GetButtonDown("P1 Action"))
+            {
+                combat.RepairStats(playerID, stationID);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -56,20 +60,18 @@ public class RepairStation : MonoBehaviour
                 break;
 
             }
+            inStation = true;
         }
     }
-    private void OnTriggerStay(Collider other) 
-    {
-      if(Input.GetButtonDown(playerAxis))
-      {
-          Debug.Log("ass");
-          combat.RepairStats(playerID, stationID);
-      }
-    }
+   
     private void OnTriggerExit(Collider other) 
     {
-        playerID = 0;
-        playerAxis = null;
+        if (other.gameObject.tag == "Player")
+        {
+             playerID = 0;
+            playerAxis = null;
+            inStation = false;
+        }
     }
 
 }

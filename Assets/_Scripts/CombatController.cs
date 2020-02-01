@@ -6,9 +6,9 @@ public class CombatController : MonoBehaviour
 {
     [SerializeField]
     public PlayerStats[] player;
-    public int[] healthValues;
-    public int[] attackValues;
-    public int[] speedValues;
+    public float[] healthValues;
+    public float[] attackValues;
+    public float[] speedValues,rotateValues;
     private RobotMovement movementOne;
     private RobotMovement1 movementTwo;
 
@@ -18,7 +18,7 @@ public class CombatController : MonoBehaviour
     {
         movementOne = player[0].playerObject.GetComponent<RobotMovement>();
         movementTwo = player[1].playerObject.GetComponent<RobotMovement1>();
-        SetStats();
+        //SetStats();
     }
 
     // Update is called once per frame

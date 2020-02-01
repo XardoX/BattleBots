@@ -254,7 +254,7 @@ public class RobotMovement1 : MonoBehaviour
         input += i;
     }
 
-    public void SetSpeedlvl(int leftSpeed, int rightSpeed)
+    public void SetSpeedlvl(float leftSpeed, float rightSpeed)
     {
         leftTrack.acceleration = leftTrack.acceleration*leftSpeed;
         rightTrack.acceleration = rightTrack.acceleration*rightSpeed;
