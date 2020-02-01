@@ -30,6 +30,7 @@ public class MenuMenager : MonoBehaviour
     {
         //SceneManager.LoadSceneAsync("Arena"); odkomentowac jak bedzie gotowa scena
         Debug.Log("Grasz");
+        FindObjectOfType<AudioManager>().Play("Buttons");
 
     }
 
@@ -41,13 +42,15 @@ public class MenuMenager : MonoBehaviour
         TurnOff.gameObject.SetActive(false);
         Skip.gameObject.SetActive(true);
         Debug.Log("Ustawienia");
-        
+        FindObjectOfType<AudioManager>().Play("Buttons");
+
     }
 
     public void OnClickQuit()
     {
         Application.Quit();
         Debug.Log("Wyszedles z gry");
+        FindObjectOfType<AudioManager>().Play("Buttons");
 
     }
     public void OnClickSkip()
@@ -58,6 +61,7 @@ public class MenuMenager : MonoBehaviour
         TurnOff.gameObject.SetActive(true);
         Skip.gameObject.SetActive(false);
         Debug.Log("Skipped");
+        FindObjectOfType<AudioManager>().Play("Buttons");
     }
 
 }
