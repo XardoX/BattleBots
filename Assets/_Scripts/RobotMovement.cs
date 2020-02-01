@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RobotMovement : MonoBehaviour
 {
@@ -13,12 +14,18 @@ public class RobotMovement : MonoBehaviour
     public float brakingMultiplier;
     public float rotationMultiplier;
 
+    PlayerControls controls;
+    private int input;
     private float currentSpeed;
     private float currentRotatiom;
     private Rigidbody rb;
     private bool speedCalculated;
     private bool forward;
 
+    private void Awake() {
+        controls = new PlayerControls();
+        SetControls();
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -26,8 +33,7 @@ public class RobotMovement : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        int input = 0;
-
+/*
         if(Input.GetKey(KeyCode.W))
         {
             input += 1000;
@@ -44,7 +50,7 @@ public class RobotMovement : MonoBehaviour
         {
             input += 100;
         }
-    
+    */
         speedCalculated = true;
         currentRotatiom = 0;
         switch(input)
@@ -129,7 +135,15 @@ public class RobotMovement : MonoBehaviour
              currentSpeed = 0;
             
         }
-        rb.MovePosition(transform.position + transform.forward * currentSpeed * Time.deltaTime);
+        Vector3 desiredPosition = transform.position + transform.forward * currentSpeed * Time.deltaTime;
+        Vector3 direction = desiredPosition - transform.position;
+        Ray ray = new Ray(transform.position, direction);
+        RaycastHit hit;
+        if (!Physics.Raycast(ray,out hit,direction.magnitude))
+            rb.MovePosition(desiredPosition);
+        else
+            rb.MovePosition(hit.point);
+        //rb.MovePosition(transform.position + transform.forward * currentSpeed * Time.deltaTime);
         #endregion
 
         #region Rotation
@@ -169,6 +183,7 @@ public class RobotMovement : MonoBehaviour
         {
             Vector3 origin = new Vector3(dir,transform.position.y, transform.position.z);
             Quaternion q = Quaternion.AngleAxis(rotationMultiplier * currentRotatiom/ 10, Vector3.up);
+            
             rb.MovePosition(q * (rb.transform.position - origin) + origin);
             rb.MoveRotation(rb.transform.rotation * q);
         }   
@@ -188,6 +203,39 @@ public class RobotMovement : MonoBehaviour
         }
         
         speedCalculated = true;
+    }
+    private void OnEnable() 
+    {
+        controls.RobotMovement.L1.Enable();
+        controls.RobotMovement.L2.Enable();
+        controls.RobotMovement.R1.Enable();
+        controls.RobotMovement.R2.Enable();
+        controls.RobotMovement.A.Enable();
+    }
+    private void OnDisable() 
+    {
+        controls.RobotMovement.L1.Disable();
+        controls.RobotMovement.L2.Disable();
+        controls.RobotMovement.R1.Disable();
+        controls.RobotMovement.R2.Disable();
+        controls.RobotMovement.A.Disable();
+    }
+    private void SetControls()
+    {
+        controls.RobotMovement.L1.performed += context => CalculateInput(1000);
+        controls.RobotMovement.L2.started += context => CalculateInput(1);
+        controls.RobotMovement.R1.performed += context => CalculateInput(10);
+        controls.RobotMovement.R2.started += context => CalculateInput(100);
+        controls.RobotMovement.L1.canceled += context => CalculateInput(-1000);
+        controls.RobotMovement.L2.canceled += context => CalculateInput(-1);
+        controls.RobotMovement.R1.canceled += context => CalculateInput(-10);
+        controls.RobotMovement.R2.canceled += context => CalculateInput(-100);
+        //controls.RobotMovement.A.performed += context => CalculateInput(1000);
+    }
+
+    void CalculateInput(int i)
+    {
+        input += i;
     }
 }
 [System.Serializable]

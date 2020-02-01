@@ -1,0 +1,109 @@
+{
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "RobotMovement",
+            "id": "127c9d29-1c94-40bc-b5d5-43447e3ea179",
+            "actions": [
+                {
+                    "name": "L1",
+                    "type": "Button",
+                    "id": "67d0303a-de76-424d-a1dc-8b21e1a41a35",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "L2",
+                    "type": "Button",
+                    "id": "0657d1f0-4393-45a3-8caa-be01eeda1766",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "R1",
+                    "type": "Button",
+                    "id": "4edffd86-dc54-4fe4-8d0e-f64767214ee8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "R2",
+                    "type": "Button",
+                    "id": "41327d42-8e3a-4459-a920-cc96f26204ab",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "A",
+                    "type": "Button",
+                    "id": "e72f47c9-e2e6-4f8c-a489-4f16bf14aa26",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e871b1ae-469d-4531-a4cd-63a0acea5387",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "L1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96437a74-7c49-463c-a37d-3532a6ca0720",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "L2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad8b6e43-3de7-4c10-80d1-d81ed91244ef",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "R1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ba751dfe-c453-459d-8ec7-4113ce9adbac",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "R2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b6fb34cb-333a-4357-8f4d-05c6707b19b1",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
