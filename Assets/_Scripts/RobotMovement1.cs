@@ -6,13 +6,12 @@ using UnityEngine.InputSystem;
 public class RobotMovement1 : MonoBehaviour
 {
 
-    public int player;
-    public bool inverted;
     [SerializeField]
     public Track1 leftTrack, rightTrack;
     
     public float brakingMultiplier;
     public float rotationMultiplier;
+    public float bouncePower;
 
     PlayerControls controls;
     private int input;
@@ -34,22 +33,6 @@ public class RobotMovement1 : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        if(Input.GetKey(KeyCode.W))
-        {
-            input += 1000;
-        }
-        if(Input.GetKey(KeyCode.S))
-        {
-            input += 1;
-        }
-        if(Input.GetKey(KeyCode.UpArrow))
-        {
-            input += 10;
-        }
-        if(Input.GetKey(KeyCode.DownArrow))
-        {
-            input += 100;
-        }
         speedCalculated = true;
         currentRotatiom = 0;
         switch(input)
@@ -257,10 +240,26 @@ public class RobotMovement1 : MonoBehaviour
         //controls.PlayerTwo.Confirm.performed += context => CalculateInput(1000);
         
     }
+    private void OnCollisionEnter(Collision other) 
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            other.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward* bouncePower);
+            currentSpeed = -currentSpeed/2;
+        }else currentSpeed = -currentSpeed;
+    }
 
     void CalculateInput(int i)
     {
         input += i;
+    }
+
+    public void SetSpeedlvl(int leftSpeed, int rightSpeed)
+    {
+        leftTrack.acceleration = leftTrack.acceleration*leftSpeed;
+        rightTrack.acceleration = rightTrack.acceleration*rightSpeed;
+        leftTrack.rotationSpeed = leftTrack.rotationSpeed * leftSpeed;
+        rightTrack.rotationSpeed = rightTrack.rotationSpeed * rightSpeed;
     }
     
 }

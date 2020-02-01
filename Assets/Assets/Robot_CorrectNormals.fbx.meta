@@ -1,20 +1,8 @@
 fileFormatVersion: 2
-guid: 7d316f417cccb314f8f6689543c17b47
+guid: 2c483ed00bd1deb45a84a057b2794eaa
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable:
-  - first:
-      74: 3240795585044326052
-    second: Track.R|CubeAction
-  - first:
-      74: 2855339805601255196
-    second: Trakc.L|CubeAction
-  - first:
-      74: -9108233771330987430
-    second: Track_Moving.R|CubeAction
-  - first:
-      74: -4269646983666392977
-    second: Trakck_Moving.L|CubeAction
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -46,7 +34,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.1
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -92,7 +80,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.1
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
