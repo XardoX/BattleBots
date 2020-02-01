@@ -37,7 +37,7 @@ public class CombatController : MonoBehaviour
         movementOne.SetSpeedlvl(speedValues[player[0].leftSpeed],speedValues[player[0].rightSpeed], rotateValues[player[0].leftSpeed], rotateValues[player[0].rightSpeed]);
         movementTwo.SetSpeedlvl(speedValues[player[1].leftSpeed],speedValues[player[1].rightSpeed],rotateValues[player[1].leftSpeed], rotateValues[player[1].rightSpeed]);
     }
-
+    #region  Repair
     public void RepairStats(int playerID, int statID)
     {
         int statlevel = 0;
@@ -114,8 +114,10 @@ public class CombatController : MonoBehaviour
             default:
             break;
         }
-        
     }
+        #endregion
+
+
 }
 [System.Serializable]
 public class PlayerStats
