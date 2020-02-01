@@ -236,10 +236,10 @@ MonoBehaviour:
     rotationSpeed: 55
   rightTrack:
     maxSpeed: 10
-    acceleration: 0.4
-    rotationSpeed: 55
+    acceleration: 0.05
+    rotationSpeed: 15
   brakingMultiplier: 0.8
-  rotationMultiplier: 0.69
+  rotationMultiplier: 1
   bouncePower: 400
 --- !u!65 &112262630
 BoxCollider:
@@ -447,16 +447,37 @@ MonoBehaviour:
   - playerObject: {fileID: 112262628}
     healthLevel: 1
     attackLevel: 1
-    leftSpeed: 1
-    rightSpeed: 1
+    leftSpeed: 0
+    rightSpeed: 0
   - playerObject: {fileID: 2759908931353096755}
     healthLevel: 1
     attackLevel: 1
-    leftSpeed: 1
-    rightSpeed: 1
-  healthValues: 05000000080000000a0000000c0000000f000000
-  attackValues: 05000000080000000a0000000c0000000f000000
-  speedValues: 05000000080000000a0000000c0000000f000000
+    leftSpeed: 0
+    rightSpeed: 0
+  healthValues:
+  - 5
+  - 8
+  - 10
+  - 12
+  - 15
+  attackValues:
+  - 5
+  - 8
+  - 10
+  - 12
+  - 15
+  speedValues:
+  - 0.05
+  - 0.1
+  - 0.15
+  - 0.2
+  - 0.3
+  rotateValues:
+  - 15
+  - 20
+  - 30
+  - 40
+  - 55
 --- !u!4 &471805402
 Transform:
   m_ObjectHideFlags: 0
@@ -1336,7 +1357,7 @@ MonoBehaviour:
     acceleration: 0.4
     rotationSpeed: 55
   brakingMultiplier: 0.8
-  rotationMultiplier: 0.69
+  rotationMultiplier: 1
   bouncePower: 400
 --- !u!114 &2759908931353096757
 MonoBehaviour:
