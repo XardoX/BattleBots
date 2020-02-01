@@ -18,7 +18,7 @@ public class CombatController : MonoBehaviour
     {
         movementOne = player[0].playerObject.GetComponent<RobotMovement>();
         movementTwo = player[1].playerObject.GetComponent<RobotMovement1>();
-        //SetStats();
+        SetStats();
     }
 
     // Update is called once per frame
@@ -34,8 +34,8 @@ public class CombatController : MonoBehaviour
 
     void SetStats()
     {
-        movementOne.SetSpeedlvl(speedValues[player[0].leftSpeed],speedValues[player[0].rightSpeed]);
-        movementTwo.SetSpeedlvl(speedValues[player[1].leftSpeed],speedValues[player[1].rightSpeed]);
+        movementOne.SetSpeedlvl(speedValues[player[0].leftSpeed],speedValues[player[0].rightSpeed], rotateValues[player[0].leftSpeed], rotateValues[player[0].rightSpeed]);
+        movementTwo.SetSpeedlvl(speedValues[player[1].leftSpeed],speedValues[player[1].rightSpeed],rotateValues[player[1].leftSpeed], rotateValues[player[1].rightSpeed]);
     }
 
     public void RepairStats(int playerID, int statID)
@@ -44,18 +44,18 @@ public class CombatController : MonoBehaviour
         switch(statID)
         {
             case 1:
-            statlevel = player[playerID].healthLevel;
+            statlevel = (player[playerID].healthLevel)*5;
             break;
             case 2:
-            statlevel = player[playerID].attackLevel;
+            statlevel = (player[playerID].attackLevel)*5;
             break;
             case 3:
             if(player[playerID].leftSpeed < player[playerID].rightSpeed)
             {
-                statlevel = player[playerID].leftSpeed;
+                statlevel = (player[playerID].leftSpeed)*5;
             }else
             {
-                statlevel = player[playerID].rightSpeed;
+                statlevel = (player[playerID].rightSpeed)*5;
             }
             break;
             default:
@@ -73,27 +73,48 @@ public class CombatController : MonoBehaviour
         switch(statID)
         {
             case 1:
-            player[playerID].healthLevel++;
+            if(player[playerID].healthLevel < 4) 
+            {
+                player[playerID].healthLevel++;
+                SetStats();
+            }
             break;
             case 2:
-            player[playerID].attackLevel++;
+            if(player[playerID].attackLevel < 4) 
+            {
+                player[playerID].attackLevel++;
+                SetStats();
+            }
             break;
             case 3:
             if(player[playerID].leftSpeed < player[playerID].rightSpeed)
             {
-                player[playerID].leftSpeed++;
+                if(player[playerID].leftSpeed < 4) 
+                {
+                    player[playerID].leftSpeed++;
+                    SetStats();
+                }
             }else if(player[playerID].leftSpeed > player[playerID].rightSpeed)
             {
-                player[playerID].rightSpeed++;
+               if(player[playerID].rightSpeed < 4) 
+               {
+                   player[playerID].rightSpeed++;
+                   SetStats();
+               }
             } else if(player[playerID].leftSpeed == player[playerID].rightSpeed)
             {
-                player[playerID].rightSpeed++;
-                player[playerID].leftSpeed++;
+                if(player[playerID].leftSpeed < 4 && player[playerID].rightSpeed < 4)
+                {
+                    player[playerID].rightSpeed++;
+                    player[playerID].leftSpeed++;
+                    SetStats();
+                }
             }
             break;
             default:
             break;
         }
+        
     }
 }
 [System.Serializable]
