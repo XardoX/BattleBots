@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 112262629}
   - component: {fileID: 2759908930252351867}
   - component: {fileID: 112262632}
-  - component: {fileID: 112262633}
   m_Layer: 0
   m_Name: Player One
   m_TagString: Player
@@ -210,21 +209,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: 0
---- !u!111 &112262633
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112262628}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: da66c7ebabe05ae4494bd7716a4d8fbc, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!4 &112262634
 Transform:
   m_ObjectHideFlags: 0
@@ -955,6 +939,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1358732240}
   - component: {fileID: 1358732241}
+  - component: {fileID: 1358732242}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
@@ -1009,6 +994,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &1358732242
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358732239}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: da66c7ebabe05ae4494bd7716a4d8fbc, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1386996550
 GameObject:
   m_ObjectHideFlags: 0
