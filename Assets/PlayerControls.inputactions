@@ -2,11 +2,11 @@
     "name": "PlayerControls",
     "maps": [
         {
-            "name": "RobotMovement",
+            "name": "PlayerOne",
             "id": "127c9d29-1c94-40bc-b5d5-43447e3ea179",
             "actions": [
                 {
-                    "name": "L1",
+                    "name": "LeftTrackForward",
                     "type": "Button",
                     "id": "67d0303a-de76-424d-a1dc-8b21e1a41a35",
                     "expectedControlType": "",
@@ -14,7 +14,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "L2",
+                    "name": "LeftTrackBackward",
                     "type": "Button",
                     "id": "0657d1f0-4393-45a3-8caa-be01eeda1766",
                     "expectedControlType": "",
@@ -22,7 +22,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "R1",
+                    "name": "RightTrackForward",
                     "type": "Button",
                     "id": "4edffd86-dc54-4fe4-8d0e-f64767214ee8",
                     "expectedControlType": "",
@@ -30,7 +30,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "R2",
+                    "name": "RightTrackBackward",
                     "type": "Button",
                     "id": "41327d42-8e3a-4459-a920-cc96f26204ab",
                     "expectedControlType": "",
@@ -38,10 +38,10 @@
                     "interactions": ""
                 },
                 {
-                    "name": "A",
-                    "type": "Button",
+                    "name": "Confirm",
+                    "type": "Value",
                     "id": "e72f47c9-e2e6-4f8c-a489-4f16bf14aa26",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -49,34 +49,23 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "e871b1ae-469d-4531-a4cd-63a0acea5387",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "L1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "48c682a2-726e-423c-85b2-e78368b00b0f",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "L1",
+                    "groups": "Player Two",
+                    "action": "LeftTrackForward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "96437a74-7c49-463c-a37d-3532a6ca0720",
-                    "path": "<Gamepad>/leftTrigger",
+                    "id": "24eb637e-5f62-44eb-b0f4-e24c075c8536",
+                    "path": "<XInputController>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "L2",
+                    "groups": "Player One",
+                    "action": "LeftTrackForward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -86,19 +75,19 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "L2",
+                    "groups": "Player Two",
+                    "action": "LeftTrackBackward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "ad8b6e43-3de7-4c10-80d1-d81ed91244ef",
-                    "path": "<Gamepad>/rightShoulder",
+                    "id": "e8bacc33-9c37-47ae-9411-4148a5e9640d",
+                    "path": "<XInputController>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "R1",
+                    "groups": "Player One",
+                    "action": "LeftTrackBackward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -108,19 +97,19 @@
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "R1",
+                    "groups": "Player Two",
+                    "action": "RightTrackForward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "ba751dfe-c453-459d-8ec7-4113ce9adbac",
-                    "path": "<Gamepad>/rightTrigger",
+                    "id": "94b77564-7b17-4c43-887f-75989c88d55f",
+                    "path": "<XInputController>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "R2",
+                    "groups": "Player One",
+                    "action": "RightTrackForward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -130,19 +119,133 @@
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "R2",
+                    "groups": "Player Two",
+                    "action": "RightTrackBackward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "b6fb34cb-333a-4357-8f4d-05c6707b19b1",
-                    "path": "<Gamepad>/buttonSouth",
+                    "id": "800663d4-261e-4c3f-8b86-5480612e4b7b",
+                    "path": "<XInputController>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "A",
+                    "groups": "Player One",
+                    "action": "RightTrackBackward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "32dc9338-58cc-4a80-af12-80b6643bbdee",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player One",
+                    "action": "Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PlayerTwo",
+            "id": "fcbaa880-7777-4f5c-97ef-af64cf5e7d88",
+            "actions": [
+                {
+                    "name": "LeftTrackForward",
+                    "type": "Button",
+                    "id": "c91509ae-422b-4ae0-88d4-2944a0991532",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LeftTrackBackward",
+                    "type": "Button",
+                    "id": "928a753d-c84d-4b03-89e8-2d2a4b476e36",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RightTrackForward",
+                    "type": "Button",
+                    "id": "00219994-1868-41a5-a660-54a079c59839",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RightTrackBackward",
+                    "type": "Button",
+                    "id": "2a1d8c9b-1de9-4bea-aaa1-e01eb5bfb6f1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Confirm",
+                    "type": "Value",
+                    "id": "3e4c3973-8e2c-4d87-b150-8a8b3fbb09ca",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e18813d6-c406-4d7a-b233-84bc4f3d62a0",
+                    "path": "<DualShockGamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player Two",
+                    "action": "LeftTrackForward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ddf4be5c-b532-4ad6-bd04-e425ec2481f8",
+                    "path": "<DualShockGamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player Two",
+                    "action": "LeftTrackBackward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92bfa386-5473-4c8f-9ccc-f02d45da15ee",
+                    "path": "<DualShockGamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player Two",
+                    "action": "RightTrackForward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dee192db-44cc-493a-b0ba-993595b4d7b7",
+                    "path": "<DualShockGamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player Two",
+                    "action": "RightTrackBackward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ffce7ed-3633-4ff1-b2b9-8a7599d12ceb",
+                    "path": "<DualShockGamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player Two",
+                    "action": "Confirm",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -155,12 +258,7 @@
             "bindingGroup": "Player One",
             "devices": [
                 {
-                    "devicePath": "<Gamepad>",
-                    "isOptional": false,
-                    "isOR": false
-                },
-                {
-                    "devicePath": "<Gamepad>",
+                    "devicePath": "<XInputController>",
                     "isOptional": false,
                     "isOR": false
                 }
@@ -171,7 +269,7 @@
             "bindingGroup": "Player Two",
             "devices": [
                 {
-                    "devicePath": "<Gamepad>",
+                    "devicePath": "<DualShockGamepad>",
                     "isOptional": false,
                     "isOR": false
                 }

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RobotMovement : MonoBehaviour
+public class RobotMovement1 : MonoBehaviour
 {
 
     public int player;
     public bool inverted;
     [SerializeField]
-    public Track leftTrack, rightTrack;
+    public Track1 leftTrack, rightTrack;
     
     public float brakingMultiplier;
     public float rotationMultiplier;
@@ -190,7 +190,7 @@ public class RobotMovement : MonoBehaviour
             rb.MoveRotation(rb.transform.rotation * q);
         }   
     }
-    void calculateSpeed(Track track, bool forward)
+    void calculateSpeed(Track1 track, bool forward)
     {
         if (forward)
         {
@@ -230,31 +230,31 @@ public class RobotMovement : MonoBehaviour
     */
     private void OnEnable() 
     {
-        controls.PlayerOne.LeftTrackForward.Enable();
-        controls.PlayerOne.LeftTrackBackward.Enable();
-        controls.PlayerOne.RightTrackForward.Enable();
-        controls.PlayerOne.RightTrackBackward.Enable();
-        controls.PlayerOne.Confirm.Enable();
+        controls.PlayerTwo.LeftTrackForward.Enable();
+        controls.PlayerTwo.LeftTrackBackward.Enable();
+        controls.PlayerTwo.RightTrackForward.Enable();
+        controls.PlayerTwo.RightTrackBackward.Enable();
+        controls.PlayerTwo.Confirm.Enable();
     }
     private void OnDisable() 
     {
-        controls.PlayerOne.LeftTrackForward.Disable();
-        controls.PlayerOne.LeftTrackBackward.Disable();
-        controls.PlayerOne.RightTrackForward.Disable();
-        controls.PlayerOne.RightTrackBackward.Disable();
-        controls.PlayerOne.Confirm.Disable();
+        controls.PlayerTwo.LeftTrackForward.Disable();
+        controls.PlayerTwo.LeftTrackBackward.Disable();
+        controls.PlayerTwo.RightTrackForward.Disable();
+        controls.PlayerTwo.RightTrackBackward.Disable();
+        controls.PlayerTwo.Confirm.Disable();
     }
     private void SetControls()
     {
-        controls.PlayerOne.LeftTrackForward.performed += context => CalculateInput(1000);
-        controls.PlayerOne.LeftTrackBackward.started += context => CalculateInput(1);
-        controls.PlayerOne.RightTrackForward.performed += context => CalculateInput(10);
-        controls.PlayerOne.RightTrackBackward.started += context => CalculateInput(100);
-        controls.PlayerOne.LeftTrackForward.canceled += context => CalculateInput(-1000);
-        controls.PlayerOne.LeftTrackBackward.canceled += context => CalculateInput(-1);
-        controls.PlayerOne.RightTrackForward.canceled += context => CalculateInput(-10);
-        controls.PlayerOne.RightTrackBackward.canceled += context => CalculateInput(-100);
-        //controls.PlayerOne.Confirm.performed += context => CalculateInput(1000);
+        controls.PlayerTwo.LeftTrackForward.performed += context => CalculateInput(1000);
+        controls.PlayerTwo.LeftTrackBackward.started += context => CalculateInput(1);
+        controls.PlayerTwo.RightTrackForward.performed += context => CalculateInput(10);
+        controls.PlayerTwo.RightTrackBackward.started += context => CalculateInput(100);
+        controls.PlayerTwo.LeftTrackForward.canceled += context => CalculateInput(-1000);
+        controls.PlayerTwo.LeftTrackBackward.canceled += context => CalculateInput(-1);
+        controls.PlayerTwo.RightTrackForward.canceled += context => CalculateInput(-10);
+        controls.PlayerTwo.RightTrackBackward.canceled += context => CalculateInput(-100);
+        //controls.PlayerTwo.Confirm.performed += context => CalculateInput(1000);
         
     }
 
@@ -265,7 +265,7 @@ public class RobotMovement : MonoBehaviour
     
 }
 [System.Serializable]
-public class Track
+public class Track1
 {
     public int maxSpeed;
     public float acceleration;
