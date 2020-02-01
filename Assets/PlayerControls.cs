@@ -162,7 +162,35 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""Player One"",
+            ""bindingGroup"": ""Player One"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Player Two"",
+            ""bindingGroup"": ""Player Two"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // RobotMovement
         m_RobotMovement = asset.FindActionMap("RobotMovement", throwIfNotFound: true);
@@ -281,6 +309,24 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         }
     }
     public RobotMovementActions @RobotMovement => new RobotMovementActions(this);
+    private int m_PlayerOneSchemeIndex = -1;
+    public InputControlScheme PlayerOneScheme
+    {
+        get
+        {
+            if (m_PlayerOneSchemeIndex == -1) m_PlayerOneSchemeIndex = asset.FindControlSchemeIndex("Player One");
+            return asset.controlSchemes[m_PlayerOneSchemeIndex];
+        }
+    }
+    private int m_PlayerTwoSchemeIndex = -1;
+    public InputControlScheme PlayerTwoScheme
+    {
+        get
+        {
+            if (m_PlayerTwoSchemeIndex == -1) m_PlayerTwoSchemeIndex = asset.FindControlSchemeIndex("Player Two");
+            return asset.controlSchemes[m_PlayerTwoSchemeIndex];
+        }
+    }
     public interface IRobotMovementActions
     {
         void OnL1(InputAction.CallbackContext context);

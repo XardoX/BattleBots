@@ -9,6 +9,12 @@ ModelImporter:
   - first:
       74: 2855339805601255196
     second: Trakc.L|CubeAction
+  - first:
+      74: -9108233771330987430
+    second: Track_Moving.R|CubeAction
+  - first:
+      74: -4269646983666392977
+    second: Trakck_Moving.L|CubeAction
   externalObjects: {}
   materials:
     materialImportMode: 1

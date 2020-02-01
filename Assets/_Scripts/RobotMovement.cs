@@ -231,6 +231,7 @@ public class RobotMovement : MonoBehaviour
         controls.RobotMovement.R1.canceled += context => CalculateInput(-10);
         controls.RobotMovement.R2.canceled += context => CalculateInput(-100);
         //controls.RobotMovement.A.performed += context => CalculateInput(1000);
+        
     }
 
     void CalculateInput(int i)
