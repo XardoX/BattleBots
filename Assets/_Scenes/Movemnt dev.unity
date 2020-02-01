@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: 1
-  inverted: 0
+  inverted: 1
   leftTrack:
     maxSpeed: 10
     acceleration: 0.4

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class RobotMovement : MonoBehaviour
 {
@@ -25,66 +24,27 @@ public class RobotMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
-    {
-        if(Input.GetKey(KeyCode.W))
-        {
-
-        }
-        if(Input.GetKey(KeyCode.UpArrow))
-        {
-
-        }
-        if(Input.GetKey(KeyCode.S))
-        {
-
-        }
-        if(Input.GetKey(KeyCode.DownArrow))
-        {
-
-        }
-    }
-
     private void FixedUpdate() 
     {
         int input = 0;
-        if(inverted)
+
+        if(Input.GetKey(KeyCode.W))
         {
-            if(Input.GetKey(KeyCode.W))
-            {
-                input += 1000;
-            }
-            if(Input.GetKey(KeyCode.S))
-            {
-                input += 1;
-            }
-            if(Input.GetKey(KeyCode.UpArrow))
-            {
-                input += 10;
-            }
-            if(Input.GetKey(KeyCode.DownArrow))
-            {
-                input += 100;
-            }
-        } else
-        {
-            if(Input.GetKey(KeyCode.W))
-            {
-                input += 10;
-            }
-            if(Input.GetKey(KeyCode.S))
-            {
-                input += 100;
-            }
-            if(Input.GetKey(KeyCode.UpArrow))
-            {
-                input += 1000;
-            }
-            if(Input.GetKey(KeyCode.DownArrow))
-            {
-                input += 1;
-            }
+            input += 1000;
         }
+        if(Input.GetKey(KeyCode.S))
+        {
+            input += 1;
+        }
+        if(Input.GetKey(KeyCode.UpArrow))
+        {
+            input += 10;
+        }
+        if(Input.GetKey(KeyCode.DownArrow))
+        {
+            input += 100;
+        }
+    
         speedCalculated = true;
         currentRotatiom = 0;
         switch(input)
@@ -109,12 +69,12 @@ public class RobotMovement : MonoBehaviour
                 currentRotatiom += rightTrack.rotationSpeed;
                 CalculateRotation(false,1);
                 break;
-            case 0110:// rotate right
+            case 1100:// rotate right
                 currentRotatiom += leftTrack.rotationSpeed + rightTrack.rotationSpeed;
                 CalculateRotation(true,1);
                 speedCalculated = false;
                 break;
-            case 1001:// rotate left
+            case 0011:// rotate left
                 currentRotatiom -= leftTrack.rotationSpeed + rightTrack.rotationSpeed;
                 CalculateRotation(true,1);
                 speedCalculated = false;
@@ -132,9 +92,10 @@ public class RobotMovement : MonoBehaviour
                 CalculateRotation(true,1);
                 break;
             default:
-            speedCalculated = false;
-            break;
+                speedCalculated = false;
+                break;
         }
+
         #region Movement
         /*
         speedCalculated = false;
@@ -153,16 +114,24 @@ public class RobotMovement : MonoBehaviour
             if (currentSpeed > 0)
             {
                 currentSpeed -= ((leftTrack.acceleration + rightTrack.acceleration)/2)*brakingMultiplier;
-                if (currentSpeed < 0) currentSpeed = 0;
-            } else if (currentSpeed < 0)
+
+                if (currentSpeed < 0)
+                 currentSpeed = 0;
+            }
+            else if (currentSpeed < 0)
             {
                 currentSpeed += ((leftTrack.acceleration + rightTrack.acceleration)/2)*brakingMultiplier;
-                if (currentSpeed > 0) currentSpeed = 0;
-            } else currentSpeed = 0;
+
+                if (currentSpeed > 0)
+                 currentSpeed = 0;
+            } 
+            else
+             currentSpeed = 0;
             
         }
         rb.MovePosition(transform.position + transform.forward * currentSpeed * Time.deltaTime);
         #endregion
+
         #region Rotation
         /*
         bool canRotate = true;
@@ -187,8 +156,6 @@ public class RobotMovement : MonoBehaviour
             }
         }*/
         
-        
-        
         #endregion
     }
     void CalculateRotation(bool aroundSelf,int dir)
@@ -197,12 +164,13 @@ public class RobotMovement : MonoBehaviour
         {
             Quaternion deltaRotation = Quaternion.Euler(new Vector3(0,currentRotatiom,0) * Time.deltaTime);
             rb.MoveRotation(rb.rotation * deltaRotation);
-        }else 
+        }
+        else 
         {
-        Vector3 origin = new Vector3(dir,transform.position.y, transform.position.z);
-        Quaternion q = Quaternion.AngleAxis(rotationMultiplier * currentRotatiom/ 10, Vector3.up);
-        rb.MovePosition(q * (rb.transform.position - origin) + origin);
-        rb.MoveRotation(rb.transform.rotation * q);
+            Vector3 origin = new Vector3(dir,transform.position.y, transform.position.z);
+            Quaternion q = Quaternion.AngleAxis(rotationMultiplier * currentRotatiom/ 10, Vector3.up);
+            rb.MovePosition(q * (rb.transform.position - origin) + origin);
+            rb.MoveRotation(rb.transform.rotation * q);
         }   
     }
     void calculateSpeed(Track track, bool forward)
@@ -214,13 +182,11 @@ public class RobotMovement : MonoBehaviour
                 currentSpeed += track.acceleration;
             }
         }
-        else
+        else if (currentSpeed > -track.maxSpeed)
         {
-            if (currentSpeed > -track.maxSpeed)
-            {
-                currentSpeed -= track.acceleration;
-            }
+            currentSpeed -= track.acceleration;
         }
+        
         speedCalculated = true;
     }
 }
