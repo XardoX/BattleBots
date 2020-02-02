@@ -11,6 +11,12 @@ public class FadeScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            animator.SetTrigger("FadeIN");
+            Debug.Log("Dziala");
+
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
             animator.SetTrigger("FadeOUT");
             Debug.Log("Dziala");
         }
