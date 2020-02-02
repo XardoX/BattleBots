@@ -3752,12 +3752,12 @@ PrefabInstance:
     - target: {fileID: 7622299687080653030, guid: 18c211ae22d00564286c94d0afa7a723,
         type: 3}
       propertyPath: roundTime
-      value: 15
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7622299687080653030, guid: 18c211ae22d00564286c94d0afa7a723,
         type: 3}
       propertyPath: repairTime
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7622299687080653030, guid: 18c211ae22d00564286c94d0afa7a723,
         type: 3}
