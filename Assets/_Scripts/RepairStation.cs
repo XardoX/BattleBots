@@ -6,7 +6,6 @@ public class RepairStation : MonoBehaviour
 {
     public enum StationType{Health, Attack, Speed};
     public StationType stationType;
-
     private int stationID, playerID;
     private float statValue;
     private CombatController combat;

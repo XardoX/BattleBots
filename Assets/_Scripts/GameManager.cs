@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public Transform playerOneArena, playerOneBox, playerTwoArena, playerTwoBox;
-    public GameObject separateCams;
+    public GameObject separateCams, redWon, blueWon;
     public Animator canvasAnim;
     public RobotMovement playerOneMoves;
     public RobotMovement1 playerTwoMove;
@@ -35,6 +36,12 @@ public class GameManager : MonoBehaviour
             timerLeft -= Time.deltaTime;
         }
         timerText.text = timerLeft.ToString("F0");
+
+        if(CombatController.Instance.isEndGame)
+        {
+            StopCoroutine(StartRound());
+            StartCoroutine(FinishGame());
+        }
     }
     IEnumerator StartRound()
     {
@@ -72,7 +79,25 @@ public class GameManager : MonoBehaviour
             separateCams.SetActive(false);
             SetPlayerTransform(playerOneArena, playerTwoArena);
         }
+        StartCoroutine(FinishGame());
+    }
 
+    IEnumerator FinishGame()
+    {
+        Debug.Log("Finish");
+        switch(CombatController.Instance.winnerID)
+        {
+            case 0:
+            redWon.SetActive(true);
+            break;
+            case 1:
+            blueWon.SetActive(true);
+            break;
+            default:
+            break;
+        }
+        yield return new WaitForSecondsRealtime(7f);
+        SceneManager.LoadSceneAsync("Menu");
     }
     void SetPlayerTransform(Transform OnePos, Transform TwoPos)
     {
