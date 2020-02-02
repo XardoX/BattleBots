@@ -228,11 +228,12 @@ public class CombatController : MonoBehaviour
         Debug.Log("Endgema");
         if (loserID == 0)
         {
-            loserID = 1;
+            //loserID = 1;
         }
         else if (loserID == 1)
         {
-            loserID = 0;        }
+            //loserID = 0;        
+            }
         winnerID = loserID;
         isEndGame = true;
     }

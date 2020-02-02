@@ -38,6 +38,7 @@ public class RepairStation : MonoBehaviour
             if(Input.GetButtonDown(playerAxis))
             {
                 combat.RepairStats(playerID, stationID);
+                Debug.Log("Repair");
             }
         }
     }
@@ -50,10 +51,10 @@ public class RepairStation : MonoBehaviour
             switch(playerID)
             {
                 case 0:
-                playerAxis = "P1 Action";
+                playerAxis = "P1 Use";
                 break;
                 case 1:
-                playerAxis = "P2 Action";
+                playerAxis = "P2 Use";
                 break;
                 default:
                 break;
