@@ -13,6 +13,7 @@ public class CombatController : MonoBehaviour
     public int[] attackValues;
     public float[] speedValues,rotateValues;
     public bool isEndGame;
+    public int winnerID;
     private RobotMovement movementOne;
     private RobotMovement1 movementTwo;
 
@@ -40,7 +41,14 @@ public class CombatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (player[0].currentHealth <= 0)
+        {
+            EndGame(0);
+        }
+         if (player[1].currentHealth <= 0)
+        {
+            EndGame(1);
+        }
     }
 
     void StartFight()
@@ -87,6 +95,7 @@ public class CombatController : MonoBehaviour
     }
     public void DecreaseStat(int statID, int playerID)
     {
+        
         switch(statID)
         {
             case 1:
@@ -97,7 +106,7 @@ public class CombatController : MonoBehaviour
                 {
                     if (player[playerID].currentHealth <= 0)
                     {
-                        EndGame();
+                        EndGame(playerID);
                     }
                 }else if (player[playerID].currentHealth <= healthValues[player[playerID].healthLevel-1])
                 {
@@ -214,8 +223,17 @@ public class CombatController : MonoBehaviour
     }
         #endregion
 
-    void EndGame()
+    void EndGame(int loserID)
     {
+        Debug.Log("Endgema");
+        if (loserID == 0)
+        {
+            loserID = 1;
+        }
+        else if (loserID == 1)
+        {
+            loserID = 0;        }
+        winnerID = loserID;
         isEndGame = true;
     }
 }
