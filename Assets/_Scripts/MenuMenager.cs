@@ -7,11 +7,17 @@ using TMPro;
 
 public class MenuMenager : MonoBehaviour
 {
+    public Button End;
+    public Button Continue;
     public Button Play;
     public Button Settings;
     public Button Quit;
     public TextMeshProUGUI TurnOff;
     public Button Skip;
+    public Image Background;
+    public Image Tutorial;
+    public Image Tutorial2;
+    public TextMeshProUGUI Credits;
     //public bool ustawienia;
     // Start is called before the first frame update
     void Start()
@@ -25,10 +31,16 @@ public class MenuMenager : MonoBehaviour
         
     }
 
-
+   
     public void OnClickGame()
     {
-        //SceneManager.LoadSceneAsync("Arena"); odkomentowac jak bedzie gotowa scena
+        Background.gameObject.SetActive(false);
+        Play.gameObject.SetActive(false);
+        Settings.gameObject.SetActive(false);
+        Quit.gameObject.SetActive(false);
+        TurnOff.gameObject.SetActive(false);
+        Tutorial.gameObject.SetActive(true);
+        Continue.gameObject.SetActive(true);
         Debug.Log("Grasz");
         FindObjectOfType<AudioManager>().Play("Buttons");
 
@@ -41,6 +53,7 @@ public class MenuMenager : MonoBehaviour
         Quit.gameObject.SetActive(false);
         TurnOff.gameObject.SetActive(false);
         Skip.gameObject.SetActive(true);
+        Credits.gameObject.SetActive(true);
         Debug.Log("Ustawienia");
         FindObjectOfType<AudioManager>().Play("Buttons");
 
@@ -60,8 +73,21 @@ public class MenuMenager : MonoBehaviour
         Quit.gameObject.SetActive(true);
         TurnOff.gameObject.SetActive(true);
         Skip.gameObject.SetActive(false);
+        Credits.gameObject.SetActive(false);
         Debug.Log("Skipped");
         FindObjectOfType<AudioManager>().Play("Buttons");
     }
+    public void OnClickContinue()
+    {
+        Continue.gameObject.SetActive(false);
+        Tutorial.gameObject.SetActive(false);
+        Tutorial2.gameObject.SetActive(true);
+        End.gameObject.SetActive(true);
 
+    }
+    public void OnClickPlay()
+    {
+        SceneManager.LoadSceneAsync("Main");
+        Debug.Log("Ladowanie kolejnej sceny");
+    }
 }
