@@ -5,10 +5,12 @@ using UnityEngine.UI;
 using TMPro;
 public class CombatController : MonoBehaviour
 {
+    private static CombatController _instance;
+    public static CombatController Instance {get{return _instance;}}
     [SerializeField]
     public PlayerStats[] player;
-    public float[] healthValues;
-    public float[] attackValues;
+    public int[] healthValues;
+    public int[] attackValues;
     public float[] speedValues,rotateValues;
     private RobotMovement movementOne;
     private RobotMovement1 movementTwo;
@@ -17,6 +19,15 @@ public class CombatController : MonoBehaviour
 
     private int[] currentDamage;
 
+    private void Awake() 
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        } else {
+            _instance = this;
+        }
+    }
     void Start()
     {
         movementOne = player[0].playerObject.GetComponent<RobotMovement>();
@@ -45,7 +56,8 @@ public class CombatController : MonoBehaviour
         {
             movementTwo.SetSpeedlvl(speedValues[player[1].leftSpeed],speedValues[player[1].rightSpeed],rotateValues[player[1].leftSpeed], rotateValues[player[1].rightSpeed]);
         }
-        player[playerID].healthText.text = healthValues[player[playerID].healthLevel].ToString();
+        player[playerID].currentHealth = healthValues[player[playerID].healthLevel];
+        player[playerID].healthText.text = player[playerID].currentHealth.ToString();
         player[playerID].attackText.text = (player[playerID].attackLevel+1).ToString();
         player[playerID].leftText.text = (player[playerID].leftSpeed+1).ToString();
         player[playerID].rightText.text = (player[playerID].rightSpeed+1).ToString();
@@ -53,10 +65,6 @@ public class CombatController : MonoBehaviour
     }
     public void DealDamage(int damageID, int damagedID)
     {
-        Debug.Log(damagedID);
-        currentDamage[damagedID]++;
-        if(currentDamage[damageID]>= 3)
-        {
             switch(damageID)
             {
                 case 0://health
@@ -74,36 +82,46 @@ public class CombatController : MonoBehaviour
                 default:
                 break;
             }
-        currentDamage[damageID] = 0;
-        }
+        
     }
     public void DecreaseStat(int statID, int playerID)
     {
         switch(statID)
         {
             case 1:
-                if(player[playerID].healthLevel > 1) 
+                
+                player[playerID].currentHealth--;
+                player[playerID].healthText.text = player[playerID].currentHealth.ToString();
+                if(player[playerID].healthLevel == 0)
+                {
+                    if (player[playerID].currentHealth <= 0)
+                    {
+                        EndGame();
+                    }
+                }else if (player[playerID].currentHealth <= healthValues[player[playerID].healthLevel-1])
                 {
                     player[playerID].healthLevel--;
+                    player[playerID].currentHealth = healthValues[player[playerID].healthLevel];
                     SetStats(playerID);
                 }
+
                 break;
             case 2:
-                if(player[playerID].attackLevel > 1) 
+                if(player[playerID].attackLevel >= 1) 
                 {
                     player[playerID].attackLevel--;
                     SetStats(playerID);
                 }
                 break;
             case 3:
-                if(player[playerID].leftSpeed > 1) 
+                if(player[playerID].leftSpeed >= 1) 
                 {
                     player[playerID].leftSpeed--;
                     SetStats(playerID);
                 }
                 break;
             case 4:
-                if(player[playerID].rightSpeed > 1) 
+                if(player[playerID].rightSpeed >= 1) 
                 {
                     player[playerID].rightSpeed--;
                     SetStats(playerID);
@@ -195,12 +213,16 @@ public class CombatController : MonoBehaviour
     }
         #endregion
 
-
+    void EndGame()
+    {
+        
+    }
 }
 [System.Serializable]
 public class PlayerStats
 {
     public GameObject playerObject;
+    public int currentHealth;
     public int healthLevel;
     public int attackLevel;
     public int leftSpeed;

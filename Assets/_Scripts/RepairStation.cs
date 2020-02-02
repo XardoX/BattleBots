@@ -14,7 +14,7 @@ public class RepairStation : MonoBehaviour
     private bool inStation;
     void Start()
     {
-        combat = GameObject.Find("GameManager").GetComponent<CombatController>();
+        combat = CombatController.Instance;
         switch(stationType)
            {
             case StationType.Health:
@@ -36,7 +36,7 @@ public class RepairStation : MonoBehaviour
     {
         if(inStation)
         {
-            if(Input.GetButtonDown("P1 Action"))
+            if(Input.GetButtonDown(playerAxis))
             {
                 combat.RepairStats(playerID, stationID);
             }

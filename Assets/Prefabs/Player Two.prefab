@@ -257,6 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 2
+  playerID: 0
 --- !u!1 &3427593183158855274
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,6 +349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 1
+  playerID: 0
 --- !u!1 &3427593183848175410
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +453,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3427593183945078594}
   - component: {fileID: 3427593183945078595}
-  - component: {fileID: 3427593183945078592}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Untagged
@@ -499,21 +500,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &3427593183945078592
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3427593183945078621}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: da66c7ebabe05ae4494bd7716a4d8fbc, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &3427593183963386038
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,6 +683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 3
+  playerID: 0
 --- !u!1 &3427593184656158579
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,6 +803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageType: 0
+  playerID: 0
 --- !u!1 &3427593184787878262
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +904,7 @@ MonoBehaviour:
     rotationSpeed: 55
   brakingMultiplier: 0.8
   rotationMultiplier: 1
+  bounce: 0
   bouncePower: 400
 --- !u!1 &3679331833026281744
 GameObject:

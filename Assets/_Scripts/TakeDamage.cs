@@ -7,7 +7,7 @@ public class TakeDamage : MonoBehaviour
     public DamageType damageType;
     public enum DamageType{Health,Attack,LeftTrack,RightTrack}
     private CombatController combat;
-    private int damageID;
+    public int damageID;
     public int playerID;
     private void Start() {
         combat = GameObject.Find("GameManager").GetComponent<CombatController>();
@@ -30,20 +30,24 @@ public class TakeDamage : MonoBehaviour
            }
     }
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnCollisionEnter(Collision other) 
     {
+        /*
+        Debug.Log(playerID +"   "+ other.gameObject.name);
         if (playerID == 0)
         {
             if(other.gameObject.tag == "AttackTwo")
             {
-                combat.DealDamage(damageID,playerID);
+                CombatController.Instance.DealDamage(damageID,playerID);
+                //combat.DealDamage(damageID,playerID);
             }
         } else if (playerID == 1)
         {
             if(other.gameObject.tag == "Attack")
             {
-                combat.DealDamage(damageID,playerID);
+                CombatController.Instance.DealDamage(damageID,playerID);
+                //combat.DealDamage(damageID,playerID);
             }
-        }
+        }*/
     }
 }
