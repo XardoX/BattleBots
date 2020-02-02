@@ -11,6 +11,7 @@ public class RobotMovement1 : MonoBehaviour
     
     public float brakingMultiplier;
     public float rotationMultiplier;
+    public bool bounce;
     public float bouncePower;
 
     PlayerControls controls;
@@ -29,6 +30,8 @@ public class RobotMovement1 : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.centerOfMass = Vector3.zero;
+        rb.inertiaTensorRotation = Quaternion.identity;
     }
 
     private void FixedUpdate() 
@@ -81,6 +84,7 @@ public class RobotMovement1 : MonoBehaviour
                 break;
             default:
                 speedCalculated = false;
+                rb.angularVelocity = Vector3.zero;
                 break;
         }
 
@@ -97,25 +101,51 @@ public class RobotMovement1 : MonoBehaviour
             calculateSpeed(leftTrack, false);
             calculateSpeed(rightTrack, false);
         }*/
+        float brakeFloat = ((leftTrack.acceleration + rightTrack.acceleration)/2)*brakingMultiplier;
         if(!speedCalculated)
         {
             if (currentSpeed > 0)
             {
-                currentSpeed -= ((leftTrack.acceleration + rightTrack.acceleration)/2)*brakingMultiplier;
+                currentSpeed -=brakeFloat;
 
                 if (currentSpeed < 0)
                  currentSpeed = 0;
             }
             else if (currentSpeed < 0)
             {
-                currentSpeed += ((leftTrack.acceleration + rightTrack.acceleration)/2)*brakingMultiplier;
+                currentSpeed += brakeFloat;
 
                 if (currentSpeed > 0)
                  currentSpeed = 0;
             } 
             else
              currentSpeed = 0;
-            
+           
+            if (rb.velocity != Vector3.zero && currentSpeed == 0)
+            {
+                if (rb.velocity.x > 0)
+                {
+                    rb.velocity -= new Vector3(brakeFloat,0,0);
+                    if (rb.velocity.x < 0)
+                    rb.velocity = Vector3.zero;
+                } else if (rb.velocity.x < 0)
+                {
+                    rb.velocity += new Vector3(brakeFloat,0,0);
+                    if (rb.velocity.x > 0)
+                    rb.velocity = Vector3.zero;
+                }
+                if (rb.velocity.z > 0)
+                {
+                    rb.velocity -= new Vector3(0,0,brakeFloat);
+                    if (rb.velocity.x < 0)
+                    rb.velocity = Vector3.zero;
+                } else if (rb.velocity.z < 0)
+                {
+                    rb.velocity += new Vector3(0,0,brakeFloat);
+                    if (rb.velocity.x > 0)
+                    rb.velocity = Vector3.zero;
+                }
+            }
         }
         Vector3 desiredPosition = transform.position + transform.forward * currentSpeed * Time.deltaTime;
         Vector3 direction = desiredPosition - transform.position;
@@ -242,11 +272,14 @@ public class RobotMovement1 : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other) 
     {
-        if (other.gameObject.tag == "Player")
+        if(bounce)
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward* bouncePower);
-            currentSpeed = -currentSpeed/2;
-        }else currentSpeed = -currentSpeed;
+            if (other.gameObject.tag == "Player")
+            {
+                //other.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward* bouncePower);
+                currentSpeed = -currentSpeed/2;
+            }else  if (other.gameObject.tag == "Bouncable") currentSpeed = -currentSpeed * bouncePower;
+        }
     }
 
     void CalculateInput(int i)

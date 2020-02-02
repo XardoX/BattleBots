@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - Bouncable
+  - AttackTwo
+  - Damagable
   layers:
   - Default
   - TransparentFX
@@ -14,6 +17,8 @@ TagManager:
   - UI
   - 
   - 
+  - PlayerOne
+  - PlayerTwo
   - Lighting
   - Ground
   - Postprocessing
