@@ -39,6 +39,7 @@ public class RepairStation : MonoBehaviour
             {
                 combat.RepairStats(playerID, stationID);
                 Debug.Log("Repair");
+                FindObjectOfType<AudioManager>().Play("Upgrade");
             }
         }
     }

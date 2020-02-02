@@ -45,11 +45,14 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator StartRound()
     {
+
         while(!CombatController.Instance.isEndGame)
         {
             canvasAnim.SetTrigger("StartCounting");
             Debug.Log("Before");
+            FindObjectOfType<AudioManager>().Play("Countdown");
             yield return new WaitForSeconds(3.1f);
+            FindObjectOfType<AudioManager>().Play("GameMusic");
             Debug.Log("after");
             SetActivePlayers(true);
             timerLeft = roundTime;
@@ -57,17 +60,22 @@ public class GameManager : MonoBehaviour
             SetActivePlayers(false);
             canvasAnim.SetTrigger("FadeOUT");
             yield return new WaitForSeconds(1.1f);
+            FindObjectOfType<AudioManager>().Stop("GameMusic");
+
             separateCams.SetActive(true);
             
             SetPlayerTransform(playerOneBox, playerTwoBox);
             canvasAnim.SetTrigger("StartCounting");
+            FindObjectOfType<AudioManager>().Play("Countdown");
             yield return new WaitForSeconds(3.1f);
+            FindObjectOfType<AudioManager>().Play("FixingMusic");
             timerLeft = repairTime;
             SetActivePlayers(true);
             yield return new WaitForSeconds(repairTime);
             SetActivePlayers(false);
             canvasAnim.SetTrigger("FadeOUT");
             yield return new WaitForSeconds(1.1f);
+            FindObjectOfType<AudioManager>().Stop("FixingMusic");
             separateCams.SetActive(false);
             SetPlayerTransform(playerOneArena, playerTwoArena);
         }

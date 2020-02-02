@@ -46,86 +46,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sounds:
   - name: Drive
-    clip: {fileID: 8300000, guid: cb4584a3f8a490c45ab4de11e5f4133d, type: 3}
-    volume: 0
+    clip: {fileID: 8300000, guid: a4d59cbdd2523a24faa7a1b6ba51f34e, type: 3}
+    volume: 0.4
     pitch: 0
-    loop: 1
+    loop: 0
     source: {fileID: 0}
   - name: Menu Music
-    clip: {fileID: 8300000, guid: 29b865e545419794fa7428b36ac9447b, type: 3}
-    volume: 0
+    clip: {fileID: 8300000, guid: 73978ce586bb4a045b1a7d67a4230fdf, type: 3}
+    volume: 0.65
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Fence
+    clip: {fileID: 8300000, guid: af23780f44e242f45ae9e6207745a1e3, type: 3}
+    volume: 0.4
     pitch: 0
     loop: 0
     source: {fileID: 0}
-  - name: Fix 1
-    clip: {fileID: 8300000, guid: 5e02df390cd107843a41d7915da3689e, type: 3}
-    volume: 0
-    pitch: 0
-    loop: 0
-    source: {fileID: 0}
-  - name: Fix 2
-    clip: {fileID: 8300000, guid: d4affd03c3c7dc042b471622f425377e, type: 3}
-    volume: 0
-    pitch: 0
+  - name: Countdown
+    clip: {fileID: 8300000, guid: 7a56bd5c7e52c234fa85f3d3fa1bb36a, type: 3}
+    volume: 0.4
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Buttons
-    clip: {fileID: 8300000, guid: ec294941862f6de47bbd77728191167d, type: 3}
-    volume: 0
-    pitch: 0
+    clip: {fileID: 8300000, guid: 3f151db687fedbc4ba7486e568c609b8, type: 3}
+    volume: 0.882
+    pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Parts 1
-    clip: {fileID: 8300000, guid: 47e2e4df34454b44994dcefceb50ad82, type: 3}
-    volume: 0
-    pitch: 0
+  - name: GameMusic
+    clip: {fileID: 8300000, guid: 97c058b7b6cfef34880caf8096cd3439, type: 3}
+    volume: 0.65
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: EndGame
+    clip: {fileID: 8300000, guid: ca3e20d0f60391b43b3fb97d365b2de8, type: 3}
+    volume: 0.65
+    pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Parts 2
-    clip: {fileID: 8300000, guid: 326cb00ba2148ed48973de61ef73100d, type: 3}
-    volume: 0
-    pitch: 0
-    loop: 0
-    source: {fileID: 0}
-  - name: Parts 3
-    clip: {fileID: 8300000, guid: 2f75a9bd7ff5980418dca8de6eb92d2d, type: 3}
-    volume: 0
-    pitch: 0
-    loop: 0
+  - name: FixingMusic
+    clip: {fileID: 8300000, guid: a034e79f2da1336459a045e746df3410, type: 3}
+    volume: 0.65
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
   - name: Parts 4
-    clip: {fileID: 8300000, guid: f7315cd3127324c4aa93d5c606a8776c, type: 3}
+    clip: {fileID: 8300000, guid: 30dffa6cbe80a204582e3a8b47120dd1, type: 3}
     volume: 0
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: Collision
-    clip: {fileID: 8300000, guid: a97610f8961fae04a9e97851a1bc2eab, type: 3}
-    volume: 0
+    clip: {fileID: 8300000, guid: d5c59ac58620fdd419dec45c2f674273, type: 3}
+    volume: 0.4
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: Collision 2
-    clip: {fileID: 8300000, guid: ea7b349bfad25b243ad919a9f8746b34, type: 3}
+    clip: {fileID: 8300000, guid: 4d0626d4414c7874faa47d7247ba2a96, type: 3}
     volume: 0
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: Collision 3
-    clip: {fileID: 8300000, guid: 4cfe03193154d1345a60386c41c54882, type: 3}
+    clip: {fileID: 8300000, guid: 0b3917d048f7c134f9bc86c9054df1ba, type: 3}
     volume: 0
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: Upgrade
-    clip: {fileID: 8300000, guid: 763e9199c23aa304eb674170ce31d91d, type: 3}
-    volume: 0
+    clip: {fileID: 8300000, guid: c7b71a2d7ea513b44bd08c385a503cbd, type: 3}
+    volume: 0.5
     pitch: 0
     loop: 0
     source: {fileID: 0}
   - name: Destroy
-    clip: {fileID: 8300000, guid: 8987354854c25fa419b26b091672537b, type: 3}
-    volume: 0
+    clip: {fileID: 8300000, guid: f2cb1531dae46bb45905872ff4df25a6, type: 3}
+    volume: 0.5
     pitch: 0
     loop: 0
     source: {fileID: 0}

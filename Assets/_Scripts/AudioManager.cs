@@ -32,11 +32,7 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    public void Start()
-    {
-        Play("Menu Music");
-        Debug.Log("Muzyka leci");
-    }
+  
 
     public void Play(string name)
     {
@@ -47,5 +43,15 @@ public class AudioManager : MonoBehaviour
             return;
         }
         s.source.Play();
+    }
+    public void Stop(string name)
+    {
+        Sounds s = Array.Find(Sounds, Sound => Sound.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound" + name + " not found!");
+            return;
+        }
+        s.source.Stop();
     }
 }

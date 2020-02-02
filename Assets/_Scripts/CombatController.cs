@@ -225,6 +225,10 @@ public class CombatController : MonoBehaviour
 
     void EndGame(int loserID)
     {
+
+        FindObjectOfType<AudioManager>().Play("EndGame");
+
+
         Debug.Log("Endgema");
         if (loserID == 0)
         {
@@ -235,7 +239,9 @@ public class CombatController : MonoBehaviour
             //loserID = 0;        
             }
         winnerID = loserID;
+
         isEndGame = true;
+
     }
 }
 [System.Serializable]
