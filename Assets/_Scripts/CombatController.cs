@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class CombatController : MonoBehaviour
 {
     [SerializeField]
@@ -14,11 +15,14 @@ public class CombatController : MonoBehaviour
 
     private int repairValue;
 
+    private int[] currentDamage;
+
     void Start()
     {
         movementOne = player[0].playerObject.GetComponent<RobotMovement>();
         movementTwo = player[1].playerObject.GetComponent<RobotMovement1>();
-        SetStats();
+        SetStats(0);
+        SetStats(1);
     }
 
     // Update is called once per frame
@@ -32,10 +36,83 @@ public class CombatController : MonoBehaviour
         
     }
 
-    void SetStats()
+    void SetStats(int playerID)
     {
-        movementOne.SetSpeedlvl(speedValues[player[0].leftSpeed],speedValues[player[0].rightSpeed], rotateValues[player[0].leftSpeed], rotateValues[player[0].rightSpeed]);
-        movementTwo.SetSpeedlvl(speedValues[player[1].leftSpeed],speedValues[player[1].rightSpeed],rotateValues[player[1].leftSpeed], rotateValues[player[1].rightSpeed]);
+        if (playerID == 0)
+        {
+            movementOne.SetSpeedlvl(speedValues[player[0].leftSpeed],speedValues[player[0].rightSpeed], rotateValues[player[0].leftSpeed], rotateValues[player[0].rightSpeed]);
+        } else if (playerID == 1)
+        {
+            movementTwo.SetSpeedlvl(speedValues[player[1].leftSpeed],speedValues[player[1].rightSpeed],rotateValues[player[1].leftSpeed], rotateValues[player[1].rightSpeed]);
+        }
+        player[playerID].healthText.text = healthValues[player[playerID].healthLevel].ToString();
+        player[playerID].attackText.text = (player[playerID].attackLevel+1).ToString();
+        player[playerID].leftText.text = (player[playerID].leftSpeed+1).ToString();
+        player[playerID].rightText.text = (player[playerID].rightSpeed+1).ToString();
+
+    }
+    public void DealDamage(int damageID, int damagedID)
+    {
+        Debug.Log(damagedID);
+        currentDamage[damagedID]++;
+        if(currentDamage[damageID]>= 3)
+        {
+            switch(damageID)
+            {
+                case 0://health
+                    DecreaseStat(damageID,damagedID);
+                    break;
+                case 1://attack
+                    DecreaseStat(damageID,damagedID);
+                    break;
+                case 2://lefttrack
+                    DecreaseStat(damageID,damagedID);
+                    break;
+                case 3://righttrack
+                    DecreaseStat(damageID,damagedID);
+                    break;
+                default:
+                break;
+            }
+        currentDamage[damageID] = 0;
+        }
+    }
+    public void DecreaseStat(int statID, int playerID)
+    {
+        switch(statID)
+        {
+            case 1:
+                if(player[playerID].healthLevel > 1) 
+                {
+                    player[playerID].healthLevel--;
+                    SetStats(playerID);
+                }
+                break;
+            case 2:
+                if(player[playerID].attackLevel > 1) 
+                {
+                    player[playerID].attackLevel--;
+                    SetStats(playerID);
+                }
+                break;
+            case 3:
+                if(player[playerID].leftSpeed > 1) 
+                {
+                    player[playerID].leftSpeed--;
+                    SetStats(playerID);
+                }
+                break;
+            case 4:
+                if(player[playerID].rightSpeed > 1) 
+                {
+                    player[playerID].rightSpeed--;
+                    SetStats(playerID);
+                }
+                
+                break;
+            default:
+            break;
+        }
     }
     #region  Repair
     public void RepairStats(int playerID, int statID)
@@ -67,6 +144,7 @@ public class CombatController : MonoBehaviour
             UpgradeStat(statID,playerID);
             repairValue = 0;
         }
+        SetStats(playerID);
     }
     public void UpgradeStat(int statID, int playerID)
     {
@@ -76,14 +154,14 @@ public class CombatController : MonoBehaviour
             if(player[playerID].healthLevel < 4) 
             {
                 player[playerID].healthLevel++;
-                SetStats();
+                SetStats(playerID);
             }
             break;
             case 2:
             if(player[playerID].attackLevel < 4) 
             {
                 player[playerID].attackLevel++;
-                SetStats();
+                SetStats(playerID);
             }
             break;
             case 3:
@@ -92,14 +170,14 @@ public class CombatController : MonoBehaviour
                 if(player[playerID].leftSpeed < 4) 
                 {
                     player[playerID].leftSpeed++;
-                    SetStats();
+                    SetStats(playerID);
                 }
             }else if(player[playerID].leftSpeed > player[playerID].rightSpeed)
             {
                if(player[playerID].rightSpeed < 4) 
                {
                    player[playerID].rightSpeed++;
-                   SetStats();
+                   SetStats(playerID);
                }
             } else if(player[playerID].leftSpeed == player[playerID].rightSpeed)
             {
@@ -107,7 +185,7 @@ public class CombatController : MonoBehaviour
                 {
                     player[playerID].rightSpeed++;
                     player[playerID].leftSpeed++;
-                    SetStats();
+                    SetStats(playerID);
                 }
             }
             break;
@@ -127,4 +205,10 @@ public class PlayerStats
     public int attackLevel;
     public int leftSpeed;
     public int rightSpeed;
+
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI attackText;
+    public TextMeshProUGUI leftText;
+    public TextMeshProUGUI rightText;
+
 }

@@ -244,7 +244,7 @@ public class RobotMovement1 : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward* bouncePower);
+            //other.gameObject.GetComponent<Rigidbody>().AddForce(transform.forward* bouncePower);
             currentSpeed = -currentSpeed/2;
         }else currentSpeed = -currentSpeed;
     }
