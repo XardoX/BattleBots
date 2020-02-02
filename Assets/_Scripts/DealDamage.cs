@@ -55,7 +55,14 @@ public class DealDamage : MonoBehaviour
                 Debug.Log(other.gameObject.name + " playerID "+AttackedPlayerID+ "  dmgID " + statID);
                 CombatController.Instance.DealDamage(statID,AttackedPlayerID);
                 canDamage = false;
+                FindObjectOfType<AudioManager>().Play("Collision");
             }
+
        }
-   }
+        if (other.gameObject.tag == "Bouncable")
+        {
+            FindObjectOfType<AudioManager>().Play("Fence");
+        }
+        
+    }
 }

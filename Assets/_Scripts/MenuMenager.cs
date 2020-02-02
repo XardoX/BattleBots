@@ -20,9 +20,10 @@ public class MenuMenager : MonoBehaviour
     public TextMeshProUGUI Credits;
     //public bool ustawienia;
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        
+        FindObjectOfType<AudioManager>().Play("Menu Music");
+        Debug.Log("Muzyka leci");
     }
 
     // Update is called once per frame
@@ -83,11 +84,12 @@ public class MenuMenager : MonoBehaviour
         Tutorial.gameObject.SetActive(false);
         Tutorial2.gameObject.SetActive(true);
         End.gameObject.SetActive(true);
-
+        FindObjectOfType<AudioManager>().Play("Buttons");
     }
     public void OnClickPlay()
     {
         SceneManager.LoadSceneAsync("Main");
         Debug.Log("Ladowanie kolejnej sceny");
+        FindObjectOfType<AudioManager>().Play("Buttons");
     }
 }

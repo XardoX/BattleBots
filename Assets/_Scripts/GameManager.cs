@@ -29,13 +29,16 @@ public class GameManager : MonoBehaviour
     IEnumerator StartRound()
     {
         canvasAnim.SetTrigger("StartCounting");
+        FindObjectOfType<AudioManager>().Play("Countdown");
         yield return new WaitForSeconds(3.0f);
+        FindObjectOfType<AudioManager>().Play("GameMusic");
         SetActivePlayers(true);
         timeLeft = roundTime;
         yield return new WaitForSeconds(roundTime);
         SetActivePlayers(false);
         canvasAnim.SetTrigger("FadeOUT");
         yield return new WaitForSeconds(2.1f);
+        FindObjectOfType<AudioManager>().Play("FixingMusic");
         separateCams.SetActive(true);
         
         SetPlayerTransform(playerOneBox, playerTwoBox);

@@ -215,7 +215,7 @@ public class CombatController : MonoBehaviour
 
     void EndGame()
     {
-        
+        FindObjectOfType<AudioManager>().Play("EndGame");
     }
 }
 [System.Serializable]

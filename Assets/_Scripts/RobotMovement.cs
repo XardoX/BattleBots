@@ -203,7 +203,8 @@ public class RobotMovement : MonoBehaviour
             
             rb.MovePosition(q * (rb.transform.position - origin) + origin);
             rb.MoveRotation(rb.transform.rotation * q);
-        }   
+        }
+        FindObjectOfType<AudioManager>().Play("Drive");
     }
     void calculateSpeed(Track track, bool forward)
     {
@@ -218,7 +219,7 @@ public class RobotMovement : MonoBehaviour
         {
             currentSpeed -= track.acceleration;
         }
-        
+        FindObjectOfType<AudioManager>().Play("Drive");
         speedCalculated = true;
     }/*
     public void OnConfirm()
