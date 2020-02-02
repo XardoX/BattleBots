@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,10 +14,11 @@ public class GameManager : MonoBehaviour
     private GameObject playerOne, playerTwo;
     public float roundTime;
     public float repairTime;
+    public TextMeshProUGUI timerText;
+    private float timerLeft;
 
-    private float timeLeft;
-
-    private void Start() {
+    private void Start() 
+    {
         SetActivePlayers(false);
         StartCoroutine(StartRound());
         playerOne = playerOneMoves.gameObject;
@@ -25,22 +27,37 @@ public class GameManager : MonoBehaviour
     private void Update() 
     {
         
+        if ( timerLeft <= 0 )
+        {
+            timerLeft = 0;
+        } else 
+        {
+            timerLeft -= Time.deltaTime;
+        }
+        timerText.text = timerLeft.ToString("F0");
     }
     IEnumerator StartRound()
     {
-        canvasAnim.SetTrigger("StartCounting");
-        yield return new WaitForSeconds(3.0f);
-        SetActivePlayers(true);
-        timeLeft = roundTime;
-        yield return new WaitForSeconds(roundTime);
-        SetActivePlayers(false);
-        canvasAnim.SetTrigger("FadeOUT");
-        yield return new WaitForSeconds(2.1f);
-        separateCams.SetActive(true);
-        
-        SetPlayerTransform(playerOneBox, playerTwoBox);
-        SetActivePlayers(true);
-
+        while(!CombatController.Instance.isEndGame)
+        {
+            canvasAnim.SetTrigger("StartCounting");
+            Debug.Log("Before");
+            yield return new WaitForSeconds(3.0f);
+            Debug.Log("after");
+            SetActivePlayers(true);
+            timerLeft = roundTime;
+            yield return new WaitForSeconds(roundTime);
+            SetActivePlayers(false);
+            canvasAnim.SetTrigger("FadeOUT");
+            yield return new WaitForSeconds(1.0f);
+            separateCams.SetActive(true);
+            
+            SetPlayerTransform(playerOneBox, playerTwoBox);
+            canvasAnim.SetTrigger("StartCounting");
+            yield return new WaitForSeconds(3.0f);
+            timerLeft = repairTime;
+            SetActivePlayers(true);
+        }
     }
     void SetPlayerTransform(Transform OnePos, Transform TwoPos)
     {

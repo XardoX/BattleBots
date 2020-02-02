@@ -12,6 +12,7 @@ public class CombatController : MonoBehaviour
     public int[] healthValues;
     public int[] attackValues;
     public float[] speedValues,rotateValues;
+    public bool isEndGame;
     private RobotMovement movementOne;
     private RobotMovement1 movementTwo;
 
@@ -215,7 +216,7 @@ public class CombatController : MonoBehaviour
 
     void EndGame()
     {
-        
+        isEndGame = true;
     }
 }
 [System.Serializable]
